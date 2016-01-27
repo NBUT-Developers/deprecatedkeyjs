@@ -58,13 +58,12 @@
             // from continuing, and use the data in the URL to execute code
             // within the iOS app.
 
-            var dispatcher = this;
+			// var dispatcher = this;
 
             this.callbacks[envelope.id] = function(data) {
                 complete(data);
 
-                //这里我们先不删除callback id 做到多次callback可以回调，有有问题联系张创！！
-                //  delete dispatcher.callbacks[envelope.id];
+				//  delete dispatcher.callbacks[envelope.id];		// for exec callback multitimes
             };
 
             var src = "jockey://" + type + "/" + envelope.id + "?" + encodeURIComponent(JSON.stringify(envelope));
@@ -115,7 +114,7 @@
             this.messageCount += 1;
         },
 
-        //用于判断是否存在jockey
+		// Judge has jockey or not for native
         isHooked: function() {
             return true;
         },
